@@ -1,0 +1,30 @@
+# flutter_native_splash.yaml (tạo file mới ở root project, cùng cấp pubspec.yaml)
+
+flutter_native_splash:
+  # Background color (Trắng)
+  color: "#FFFFFF"
+  
+  # Logo image
+  image: assets/images/splashLogo.png
+  
+  # Nếu muốn logo có background riêng (optional)
+  # background_image: assets/images/splash_background.png
+  
+  # Android 12+ specific settings
+  android_12:
+    image: assets/images/splashLogo.png
+    color: "#FFFFFF"
+    # Icon background color (nếu cần)
+    # icon_background_color: "#FFFFFF"
+  
+  # iOS specific
+  ios: true
+  android: true
+  web: false
+  
+  # Fullscreen (không hiển thị status bar)
+  fullscreen: true
+  
+  # Brand color cho Android 12+
+  # branding: assets/images/branding.png
+  # branding_mode: bottom  # hoặc center

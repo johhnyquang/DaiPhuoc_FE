@@ -399,3 +399,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+dai_phuoc_fe/.env
+dai_phuoc_fe/android/.env
