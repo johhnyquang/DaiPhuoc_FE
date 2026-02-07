@@ -4,6 +4,7 @@ import 'package:dai_phuoc_fe/services/authService.dart';
 import 'package:dai_phuoc_fe/services/masterService.dart';
 import 'package:dai_phuoc_fe/services/userService.dart';
 import 'package:dai_phuoc_fe/viewmodels/authViewModel.dart';
+import 'package:dai_phuoc_fe/viewmodels/homeViewModel.dart';
 import 'package:dai_phuoc_fe/views/screens/home_screen.dart';
 import 'package:dai_phuoc_fe/views/screens/login_screen.dart';
 import 'package:dai_phuoc_fe/views/screens/register_screen.dart';
@@ -43,8 +44,11 @@ class MyApp extends StatelessWidget{
     return MultiProvider(
       providers: [
         // DI Service
-        Provider(create: (_) => AuthService()),
+        Provider(
+          create: (_) => AuthService()
+        ),
         Provider(create: (_) => MasterService()),
+        Provider(create: (_) => UserService()),
 
         // DI Repo 
         // Vì tầng Repo đang có sự phụ thuộc vào tầng service nên sử dụng ProxyProvider
@@ -60,6 +64,12 @@ class MyApp extends StatelessWidget{
           create: (context) => AuthViewModel(authService: context.read<AuthService>()),
           update: (context, value, previous) {
             return previous ?? AuthViewModel(authService: value);
+          },
+        ),
+        ChangeNotifierProxyProvider<UserRepository, HomeViewModel>(
+          create: (context) => HomeViewModel(userRepository: context.read<UserRepository>()),
+          update: (context, value, previous) {
+            return previous ?? HomeViewModel(userRepository: value);
           },
         )
       ],

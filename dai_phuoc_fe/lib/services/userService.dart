@@ -33,23 +33,31 @@ class UserService
       }
   }
 
-  Future<ApiResponse<UserResponse>> getUserByIdAsync(int idUser) async 
+  Future<ApiResponse<UserResponse>> getUserByIdAsync(int idUser, String token) async 
   {
     try {
 
       final Uri uri = Uri.parse('${_config.apiBaseUrl}/$model/GetUserInfo');
+      final headers = await AppConfig.getHeaders(token: token);
 
       final response = await http.post(
         uri,
-        body: idUser,
-        headers: {"Content-Type": "application/json"}
+        body: jsonEncode(idUser),
+        headers: headers
       );
 
-      final ApiResponse<UserResponse> dataResponse = jsonDecode(response.body);
-      return _responseHelper(dataResponse, response);
+      Map<String, dynamic> jsonMap = jsonDecode(response.body);
+      final ApiResponse<UserResponse> jsonResponse = ApiResponse.fromJson(
+        jsonMap,
+        (data){
+          return UserResponse.fromJson(data);
+        }
+      );
+      return _responseHelper(jsonResponse, response);
     } catch (e) 
     {
-      throw Exception('Lỗi khi gọi API $e');
+      // throw Exception('Lỗi khi gọi API $e');
+      return ApiResponse(success: false, apiversion: "V1", message: 'Lỗi khi gọi API $e');
     }
   }
 }

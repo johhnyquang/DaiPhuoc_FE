@@ -25,11 +25,11 @@ class DatabaseHelper{
       '''
       CREATE TABLE daiphuoc_users
       (
-        id INTERGER PRIMARY KEY,
+        id INTEGER  PRIMARY KEY,
         hoten TEXT,
         socmnd TEXT,
         sdt TEXT,
-        ngaysinh NUMERIC,
+        ngaysinh TEXT,
         phai TEXT,
         dantoc TEXT,
         quoctich TEXT,

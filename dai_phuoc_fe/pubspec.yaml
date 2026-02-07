@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.20.2
   sqflite: ^2.3.0
   path: ^1.9.0
+  xpath_selector_html_parser: ^3.0.1
   
 dev_dependencies:
   flutter_test:

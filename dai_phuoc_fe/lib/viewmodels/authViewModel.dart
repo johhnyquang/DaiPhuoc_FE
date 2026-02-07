@@ -135,7 +135,7 @@ class AuthViewModel extends ChangeNotifier {
       // lưu vào share prefs
       await _saveInfoResponse(response.value);
       // sau khi lưu thông tin user vào trong prefs thì gọi đến userRepo để check user có tồn tại trong sqlite
-      await _userRepository?.insertOrGetUser(response.value!.id);
+      await _userRepository?.insertOrGetUser(response.value!.id, response.value!.accessToken);
 
       return response;
 
@@ -184,7 +184,7 @@ class AuthViewModel extends ChangeNotifier {
       // Thêm thông tin mới vào
       await _saveInfoResponse(response!.value);
       // sau khi lưu thông tin user vào trong prefs thì gọi đến userRepo để check user có tồn tại trong sqlite
-      await _userRepository?.insertOrGetUser(response.value!.id);
+      await _userRepository?.insertOrGetUser(response.value!.id, response.value!.accessToken);
 
       notifyListeners();
       return response;

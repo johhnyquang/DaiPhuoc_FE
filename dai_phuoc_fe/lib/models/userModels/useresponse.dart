@@ -29,7 +29,7 @@ class UserResponse {
       'hoten': hoTen,
       'socmnd': soCMND,
       'sdt': sdt,
-      'ngaysinh':ngaySinh,
+      'ngaysinh':ngaySinh != null ? ngaySinh!.toIso8601String() : DateTime.now().toIso8601String(),
       'phai':phai,
       'dantoc':danToc,
       'quoctich': quocTich,
@@ -41,16 +41,16 @@ class UserResponse {
   factory UserResponse.fromJson(Map<String, dynamic> json)
   {
     return UserResponse(
-      id: json['id'],
-      hoTen: json['hoten'],
-      soCMND: json['socmnd'],
-      sdt: json['sdt'],
-      ngaySinh: json['ngaysinh'],
-      phai: json['phai'],
-      danToc: json['dantoc'],
-      quocTich: json['quoctich'],
-      tinhThanh: json['tinhthanh'],
-      phuongXa: json['phuongxa']
+      id: json['id'] ?? 0,
+      hoTen: json['hoten'] ?? '',
+      soCMND: json['socmnd'] ?? '',
+      sdt: json['sdt'] ?? '',
+      ngaySinh: DateTime.parse(json['ngaysinh']),
+      phai: json['phai'] ?? '',
+      danToc: json['dantoc'] ?? '',
+      quocTich: json['quoctich'] ?? '',
+      tinhThanh: json['tinhthanh'] ?? '',
+      phuongXa: json['phuongxa'] ?? ''
     );
   }
 }
